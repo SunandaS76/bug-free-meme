@@ -11,20 +11,16 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-    ListNode* current = head;
-        ListNode *prev = NULL, *next = NULL;
- 
-        while (current != NULL) {
-            // Store next
-            next = current->next;
- 
-            // Reverse current node's pointer
-            current->next = prev;
- 
-            // Move pointers one position ahead.
-            prev = current;
-            current = next;
-        }
+    ListNode *temp,  *prev;
+    temp = head;
+    prev = NULL;
+    while (temp!=NULL){
+            ListNode* node=new ListNode;
+            node->val=temp->val;
+            node->next=prev;
+            prev=node;
+            temp=temp->next;
+        }   ` 
     ListNode *p, *k;
     p = head;
     k = prev;
