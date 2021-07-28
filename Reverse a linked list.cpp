@@ -11,7 +11,6 @@ struct Node* reverseList(struct Node *head)
         current->next = prev;
         prev = current;
         current = temp;
-        //current = current->next;
     }
    return prev;
     }
