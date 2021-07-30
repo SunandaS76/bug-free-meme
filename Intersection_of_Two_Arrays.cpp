@@ -39,3 +39,22 @@ vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
         }
         return results;
     }
+
+    // Another approach
+     vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+       unordered_set<int> freq1;
+        vector<int>::iterator found;
+        vector<int> results;
+
+        for(int i=0; i<nums1.size();i++)
+        {
+          found = find(nums2.begin(),nums2.end(),nums1[i]);
+            if(found != nums2.end())
+            {
+                freq1.insert(nums1[i]);  
+            }
+        }
+        for (auto itr = freq1.begin(); itr != freq1.end(); itr++)
+            results.push_back(*itr);
+        return results;
+    }
