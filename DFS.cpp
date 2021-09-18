@@ -19,3 +19,27 @@ vector<int> dfsOfGraph(int V, vector<int> adj[]) {
         return {};
         
     }
+
+
+    // Recursive DFS
+
+    class Solution {
+  public:
+    // Function to return a list containing the DFS traversal of the graph.
+    void dfs_helper(vector<int> adj[], vector<bool>&visited, int c){
+        cout<<c<<" ";
+        visited[c] = true;
+        for(auto x: adj[c]){
+            if(!visited[x]) dfs_helper(adj, visited, x);
+        }
+    }
+    vector<int> dfsOfGraph(int V, vector<int> adj[]) {
+        // Code here
+        vector<bool>visited(V, false);
+        for(int i=0; i<V; i++)
+            if(!visited[i]) 
+                dfs_helper(adj, visited, i);
+        return {};
+        
+    }
+};
