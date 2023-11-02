@@ -1,0 +1,32 @@
+Data: Nov 2, 23
+
+#TIP
+Array
+- Array is always pass by reference in a function
+- For others, vector etc we need to put "&" to it
+
+Time Complexity 
+- TC != time taken
+- TC for worst case scenario
+- Big O notationn
+    - Avoid constants
+    - Avoid lower value
+    - In terms of input size 
+    - Cases
+        - Best case - BIG O
+        - Avg case - Theta
+        - Worst case - Omega
+    - Single for loop ---> O(N)
+    - Nested for loop ---> O(N**2)
+
+Space Complexity
+- SC != Space taken
+- Space for worst case
+- Axuillary space and input space
+
+#TIP
+- Never do anything to data, don't manipulate input data unless specified
+- Don't tamper data
+- If you have to use temp variable then initialize them with some meaningful values
+
+- Online servers - Take 1 s for approx 10**8 operations
