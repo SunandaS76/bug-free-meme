@@ -1,3 +1,6 @@
+// Leetcode 7
+// https://leetcode.com/problems/reverse-integer/
+
 // Solution 1
 
 int reverse(int x) {
@@ -43,4 +46,18 @@ int reverse(int x) {
         }
           
         return int(p);
+    }
+
+// Solution 3
+
+int reverse(int n) {
+        long  num = n;
+        long newNum = 0;
+        while(num!=0){
+            newNum = newNum*10 + (num%10);
+            num = num/10;
+        } 
+        if(newNum < INT_MIN || newNum > INT_MAX)
+            return 0;  
+        return newNum;
     }

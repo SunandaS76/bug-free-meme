@@ -1,4 +1,4 @@
-Data: Nov 2, 23
+Date: Nov 2, 23
 
 #TIP
 Array
@@ -30,3 +30,286 @@ Space Complexity
 - If you have to use temp variable then initialize them with some meaningful values
 
 - Online servers - Take 1 s for approx 10**8 operations
+
+===============================================================================================
+
+Date: Nov 5, 2
+STL library
+
+#include<btis/stdc++.h>
+    - All the libraries automatically included
+
+C++ STL divided into 4 parts
+    1. Algorithms
+    2. Containers
+    3. Functions
+    4. Iterators
+
+PAIRS
+    pair<dtype, dtype> p = {1, 3}
+    acess pair
+        p.first and p.second
+    Want to store more than 2 vars in a pair?
+        Use nested pairs - pair<pair<int, int>, int>
+    Array of pairs
+        pair <int, int> arr[] ;
+        arr[1].first, arr[1].second
+
+VECTORS 
+    Modifiable size
+    Dynamic in nature
+    When size of data is not known
+
+    Declaraion:
+        vector<dtype>v;
+        vector<int>v; // Creates an empty container
+
+        vector<int> v(5, 100);
+            creates {100, 100, 100, 100, 100}
+            container of size 5 with 5 instances of 100;
+
+        Copy vector v1 to v2
+            vector<int>v2 (v1) ;
+
+        v.push_back(val); // Add element at end
+
+        v.emplace_back(val); // Add element at end, usually faster than push_back
+            v.emplace_back(1, 2) ; 
+                automatically assumes this to be a pair dtype       
+
+        Access elements in a vector
+            // Like an array
+            cout << v[i] <<endl;
+
+            Other way: Iterators
+                - Iterators point to the memory address
+                - vector<int>::iterator it = v.begin()
+                - vector<int>::iterator it = v.end()
+                    - end points to location right after the last location
+                    - it-- would be pointing to last variable
+                - vector<int>::iterator it = v.rend()
+                - vector<int>::iterator it = v.rbegin()
+
+                - it++ moves to next location
+                - for(auto it=v.begin();it!=v.end();++it){ }
+
+                - *(it)  g  ives you the value pointed by iterator
+                - for(auto it: v) {cout<<it<<" ";} // it represents the value
+            v.back() : Last elememt
+        
+        Delete element from the iterator
+            - Erase single element
+                v.erase(v.begin()+1); 
+            - Delete a sequence of elemets
+                v.erase(v.begin(), v.begin() + 3 );
+                first element - begin
+                second element - end address after last element
+                - end is not included
+            
+        Insert at particular index
+            v.insert(v.begin(), val); 
+        Insert multiple duplicate elements at particular location
+            v.insert(v.begin(), 2, 100)
+                inserts 100, 100 at first and second postion of array
+
+        Insert multiple elements at particular location
+            vector<int> copy = {10, 20}
+            v.insert(v.beigin, copy.begin(), copy.end())
+
+        Size
+            v.size();
+        Swap vector
+            v1.swap(v2);
+        Clearing vector
+            v.clear();
+        Check if vector is empty
+            v.empty();
+
+LIST
+   list<int> ls;
+    Functions extra: ls.push_front(5);
+    ls.emplace_front();
+    Functions of list are cheaper than functions of VECTORS
+    List maintained as doubly linked list
+
+==================================================================================
+Date Nov 7, 23
+
+DEQUE
+    deque<int> dq;
+    dq.push_back(1); // {1}
+    dq.emplace_back(2); // {1, 2}
+    dq.push_front(3); // {3, 1, 2}
+    dq.emplace_front(2); //{2, 3, 1, 2}
+    dq.pop_front(); // {3, 1, 2}
+    dq.pop_back(); //{3, 1}
+    dq.back();
+    dq.front();
+
+STACK   (LIFO) - Last in first out
+    stack<int> st;
+    st.push(1); // {1}
+    st.push(2); // {2,1}
+    st.push(3); // {3,2,1}
+    st.push(4); // {4,3,2,1}
+    st.emplace(5); // {5,4,3,2,1}
+    cout<<st.top(); // prints 5
+    st.pop(); // {4,3,2,1}
+    st.top(); // 4
+    st.size(); // 4
+    st.empty(); // true or false
+    stack<int> st1, st2;
+    st1.swap(st2);
+
+    indexing access is not allowed
+
+QUEUE
+    queue<int> q;
+    q.push(1);
+    q.push(2);
+    q.emplace(3);
+    // push in back
+    // pop from front
+
+    q.pop();
+    cout<< q.front();
+
+    // size swap empty same as stack
+
+PRIORITY QUEUE
+    // Maximum heah
+    priority_queue<int>pq;
+    Maximum elemenet stays at top
+    push, pop, emplace same
+
+    // Minimum heap
+    priority_queue<int, vector<int>, greater<int>> pq;
+    minimum element stays at top
+
+SET
+    Everything is sorted and elements are unique
+    Every operation in log N complexity
+    set<int> s;
+    Functionality same as VECTORS
+
+    // {1,2,3,4,5}
+    auto it = s.find(3);
+        // returns an iterator pointing 3
+    auto it = s.find(6);
+        // returns s.end() as 6 is not present in set
+    
+    s.erase(5) // erases 5 from set take log time complexity
+    s.count(1) // always 0 or 1
+    s.erase(iterator);
+
+    s.erase(it1, it2); // erases elements including it1 to it2 excluding it2
+
+    auto it = s.lower_bound(2);
+    auto it = s.upper_bound(3); // FIXME
+
+MULTISET
+    // Everything is same as set
+    // Stores duplicates but in sorted order
+    multiset<int>ms;
+    ms.insert(1);
+    ms.insert(2);
+    ms.insert(1); {1,2,1}
+    ms.erase(1); {2} // all 1's are erased
+    
+    Erase only one occurances of element - send address
+    ms.erase(ms.find(1)) // erases first occurance
+    ms.erase(ms.find(1), ms.find(1)+2); find one and delete till its second occurance
+
+UNORDERED_SET
+    // Same as set but not sorted, randomised order
+    // operations O(1) - worst case O(N)
+    // lower_bound and upper_bound operations does not work
+
+MAP
+    Key -> value
+    Unique keys in sorted order similar to set data stracture
+    Keys are unique, values can be anything
+    map<int, int> mp;
+    map<int, pair<int,int>> mpp;
+    map<pair<int,int>, int> mpp;
+
+    map[1] = 2;
+    map.emplace(3,1);
+    map.insert(2,1);
+    Traverse a map, iterate over a map
+
+    for(auto it: mpp){
+        cout<<it.first<<" "<<it.second<<endl;
+    }
+    cout<<map[1];
+
+    auto it = mpp.find(5) // iterator to the key 5
+    cout << *(it).second; // prints the value at 5
+
+    
+MULTIMAP
+    Duplicate keys in sorted order
+
+UNORDERED_MAP
+    Unique keys but not in sorted order
+
+=========================================================================================
+
+ALGORITHMS
+    // Sort in ascending order
+    sort(a, a+n); // a is an array
+    sort(v.begin(), v.end()); // sorting a vector v
+    
+    // Sort in ascending order
+    sort(a, a+n, greater<int>); 
+
+    // Sort it in some other order
+
+        bool sortbysec(const pair<int,int> &a,const pair<int,int> &b) 
+        { 
+            if(a.second < b.second)
+                return true;
+            if(a.second > b.second)
+                return false;
+            if(a.second == b.second)
+                if(a.first > b.first) 
+                    return true;
+                return false;
+
+
+        } 
+
+        // driver code
+            vector<pair<int, int> > vec = {{10,3}, {20, 1}, {30, 2}};
+            
+            sort(vec.begin(), vec.end(), sortbysec);
+            
+            for(int i=0; i<3; i++)
+            {
+                cout<<vec[i].first<<" "<<vec[i].second<<"\n";
+            }
+            
+POPCOUNT
+    int num = 7;
+    int cnt = __builtin_popcount();
+    return the number of set bits in binary of num
+
+    long long num = 15465451545;
+    int cnt = __builtin_popcountll();
+
+NEXT PERMUTATION
+    string = "123"
+    // get all PERMUTATIONs of string
+    do{
+        cout<<s>>endl;
+    } while(next_permutation(s.begin(), s.end()));
+
+    // need to start string with the sorted string to print all permutations
+
+MAX ELEMENT
+    int maxi = max_element(a, a+n);
+    int mini = min_element(a, a+n);
+
+
+=============================================================================================================
+// FIXME: Look at GCD by euclidiean way
