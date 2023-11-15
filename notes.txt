@@ -313,3 +313,30 @@ MAX ELEMENT
 
 =============================================================================================================
 // FIXME: Look at GCD by euclidiean way
+=============================================================================================================
+
+Date: Nov 10, 23
+
+Recursion Done
+
+BASIC HASHING
+
+    |1|2|3|4|1|3|
+
+    Frequency of appearances 
+        Brut force
+            Iterate over array and increment counter O(QxN) (Q total numbers to be calculated)
+
+Date: Nov 15, 23 
+    Tip: First use UNORDERED_MAP, if the time limit exceeds, then use MAP. Because worst case rarely happens in UNORDERED_MAP but it is O(N**2)
+    UNORDERED_MAP must have key of individual data structure like int, char, double, string
+    But in MAP any data structure like pair and structure can be a key
+
+==========================================================================================================
+
+SORTING TECHNIQUES
+
+SELECTION SORT:
+
+Keeping ith element in hand, check for minimum element from i+1 to n and replace arr[min] with arr[i] element if arr[min] < arr[i]
+
